@@ -24,8 +24,9 @@ public class PareiNesse {
         boolean retorno = ManterUsuario.validaUsuario();
         
         if(retorno){
-        int ops = Integer.parseInt(JOptionPane.showInputDialog("1- ANIMES\n3-USUARIOS"));
+        int ops = Integer.parseInt(JOptionPane.showInputDialog("1-LISTA DE ANIMES\n2- ESTOU ASSISTINDO \n3-USUARIOS"));
             if(ops == 1) pareinesse.view.ManterAnime.montarTela();
+            if(ops == 2) pareinesse.view.ManterMeusAnimes.montarTela();
             if(ops == 3)pareinesse.view.ManterUsuario.montarTela();
                 }
         else{

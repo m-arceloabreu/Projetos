@@ -27,8 +27,29 @@ public class DaoUsuario {
         this.c = new ConexaoDb().getConnection();
     }
     
+    public Usuario valida(Usuario u ) throws SQLException {
+        String  sql = "select * from usuario WHERE usu_login = ? and usu_senha = ?";
+        Usuario retorno;
+        try(PreparedStatement stmt = this.c.prepareStatement(sql)){
+            stmt.setString(1,u.getLogin());
+            stmt.setString(2,u.getSenha());
+        ResultSet rs = stmt.executeQuery();
+        retorno = null;
+        while(rs.next()){
+            retorno = new Usuario(
+                rs.getInt(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4),
+                rs.getString(5));
+            }
+        }
+        c.close();
+        return retorno;
+    }
+    
     public Usuario inserir(Usuario u) throws SQLException {
-       String sql = "inser into usuario"+"(usu_login,usu_senha,usu_nome,usu_email)"+"values (?,?,?,?)";
+       String sql = "insert into usuario" + "(usu_login,usu_senha,usu_nome,usu_email)" + "values (?,?,?,?)";
        
        try(
             PreparedStatement  stmt = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
@@ -118,8 +139,6 @@ public class DaoUsuario {
     return u;
     }
 
-    public Usuario inserir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }

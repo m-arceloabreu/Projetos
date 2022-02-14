@@ -26,6 +26,21 @@ public class ManterUsuario {
     if(ops ==5) excluir();
         }
     
+    public static boolean validaUsuario()throws SQLException,ClassNotFoundException{
+        boolean retorno = false;
+        String login = JOptionPane.showInputDialog("LOGIN: ");
+        String senha = JOptionPane.showInputDialog("SENHA: ");
+        Usuario usuEntrada = new Usuario(login,senha);
+        ControleUsuario contUsu = new ControleUsuario();
+        Usuario usuSaida = contUsu.valida(usuEntrada);
+        
+        if(usuSaida != null){
+            retorno = true;
+        }
+        return retorno;
+
+    }
+    
     public static void inserir() throws SQLException, ClassNotFoundException{
         JOptionPane.showMessageDialog(null,"INSERIR USUARIO");
         String login = JOptionPane.showInputDialog("LOGIN: ");
@@ -33,7 +48,7 @@ public class ManterUsuario {
         String nome = JOptionPane.showInputDialog("NOME: ");
         String email = JOptionPane.showInputDialog("E-MAIL: ");
         
-        Usuario usu = new Usuario(login);
+        Usuario usu = new Usuario(0,login,senha,nome,email);
         ControleUsuario contU = new ControleUsuario();
         
         usu = contU.inserir(usu);
@@ -54,15 +69,35 @@ public class ManterUsuario {
         });
     }
     
-    public static void buscar(){
-    
+    public static void buscar() throws SQLException, ClassNotFoundException{
+        JOptionPane.showMessageDialog(null,"BUSCAR USUARIO");
+        int idUsu = Integer.parseInt(JOptionPane.showInputDialog("ENTRE COM O ID: "));
+        Usuario usu = new Usuario(idUsu);
+        ControleUsuario contU = new ControleUsuario();
+        usu = contU.buscar(usu);
+        JOptionPane.showMessageDialog(null,"Usuario: " + usu.toString());
     }
     
-    public static void alterar(){
-    
+    public static void alterar() throws SQLException, ClassNotFoundException{
+        JOptionPane.showMessageDialog(null,"ALTERAR USUARIO");
+        int idUsu = Integer.parseInt(JOptionPane.showInputDialog("ENTRE COM O ID: "));
+        String login = JOptionPane.showInputDialog("LOGIN: ");
+        String senha = JOptionPane.showInputDialog("SENHA: ");
+        String nome = JOptionPane.showInputDialog("NOME: ");
+        String email = JOptionPane.showInputDialog("E-Mail: ");
+        Usuario usu = new Usuario(idUsu,login,senha,nome,email);
+        ControleUsuario contU = new ControleUsuario();
+        usu = contU.alterar(usu);
+        JOptionPane.showMessageDialog(null,"Usuario: "+ usu.toString());
+        
     }
     
-    public static void excluir(){
-    
+    public static void excluir() throws SQLException, ClassNotFoundException{
+    JOptionPane.showMessageDialog(null,"Excluir Usuario");
+    int idUsu = Integer.parseInt(JOptionPane.showInputDialog("ENTRE COM O ID"));
+    Usuario usu = new Usuario(idUsu);
+    ControleUsuario contU = new ControleUsuario();
+    usu = contU.excluir(usu);
+    JOptionPane.showMessageDialog(null,"Usuario: "+ usu.toString());
     }
 }

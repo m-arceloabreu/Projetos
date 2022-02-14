@@ -41,4 +41,8 @@ public class ControleUsuario {
         return daoUsu.excluir(u);
     }
     
+    public Usuario valida(Usuario u ) throws SQLException {
+        return daoUsu.valida(u);
+    }
+    
 }

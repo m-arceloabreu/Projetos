@@ -42,7 +42,19 @@ public class ControleMeusAnimes {
           
           }
     return listaMa;
+    }
+    public MeusAnimes buscar(MeusAnimes ma) throws  ClassNotFoundException, SQLException{
+    maDao = new DaoMeusAnimes();
+    return maDao.buscar(ma);
+    }
     
+    public MeusAnimes alterar(MeusAnimes ma) throws ClassNotFoundException,SQLException{
+        maDao = new DaoMeusAnimes();
+        return maDao.alterar(ma);
+    }
+    public MeusAnimes excluir(MeusAnimes ma) throws ClassNotFoundException, SQLException{
+       maDao = new DaoMeusAnimes();
+       return maDao.excluir(ma);
     }
     
 }

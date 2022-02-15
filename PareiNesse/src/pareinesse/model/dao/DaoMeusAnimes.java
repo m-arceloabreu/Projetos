@@ -68,5 +68,49 @@ public class DaoMeusAnimes {
      }
     return listaAn;
     }
+    public MeusAnimes buscar (MeusAnimes ma) throws SQLException{
+        String sql = "select * from meusanimes WHERE id = ?";
+        MeusAnimes retorno ;
+        
+        try(PreparedStatement stmt = this.c.prepareStatement(sql)){
+            stmt.setInt(1,ma.getId());
+            ResultSet rs = stmt.executeQuery();
+            retorno = null;
+            
+            while(rs.next()){
+            retorno = new MeusAnimes(
+                rs.getInt(1),
+                rs.getInt(2),
+                rs.getInt(3),
+                rs.getString(4));
+            }
+        }
+        c.close();
+        return retorno;
+    }
+    public MeusAnimes alterar (MeusAnimes ma) throws SQLException{
+        String sql = "UPDATE meusanimes SET  id_anime = ?, id_usu = ?, ondeparei = ? WHERE id = ?";
+        try (PreparedStatement stmt = c.prepareStatement(sql)){
+            stmt.setInt(1,ma.getId_anime());
+            stmt.setInt(2,ma.getId_usu());
+            stmt.setString(3,ma.getOndeparei());
+            stmt.setInt(4,ma.getId());
+            
+            stmt.execute();
+        }
+        return ma;
+    }
+    
+    public MeusAnimes excluir (MeusAnimes ma) throws SQLException{
+        String sql = "DELETE from meusanimes WHERE id = ?";
+        
+        try(PreparedStatement stmt = c.prepareStatement(sql)){
+            stmt.setInt(1,ma.getId());
+            
+            stmt.execute();
+        }
+        c.close();
+        return ma;
+    }
     
 }

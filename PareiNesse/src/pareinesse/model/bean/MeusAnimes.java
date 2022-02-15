@@ -14,6 +14,7 @@ public class MeusAnimes {
     private int id_anime;
     private int id_usu;
     private String ondeparei;
+    
     private Usuario usu;
     private Anime ani;
 

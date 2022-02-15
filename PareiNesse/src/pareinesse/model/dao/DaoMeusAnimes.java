@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import pareinesse.model.bean.MeusAnimes;
 import pareinesse.util.ConexaoDb;
 
@@ -42,6 +44,29 @@ public class DaoMeusAnimes {
         }
         c.close();
         return ma;
+    }
+    
+    public  List<MeusAnimes> listar (MeusAnimes ma) throws SQLException{
+    List<MeusAnimes> listaAn = new ArrayList<>();
+    String sql = "select*from meusanimes where ondeparei like ?";
+    
+    try(PreparedStatement stmt = this.c.prepareStatement(sql)){
+        stmt.setString(1,"%"+ma.getOndeparei()+"%");
+        
+        ResultSet rs = stmt.executeQuery();
+        
+        while(rs.next()){
+            MeusAnimes mSaida = new MeusAnimes(
+                    rs.getInt(1),
+                    rs.getInt(2),
+                    rs.getInt(3),
+                    rs.getString(4));
+            
+            listaAn.add(mSaida);
+        }
+        rs.close();
+     }
+    return listaAn;
     }
     
 }

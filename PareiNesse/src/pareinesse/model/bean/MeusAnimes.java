@@ -84,7 +84,7 @@ public class MeusAnimes {
     
     @Override
     public String toString(){
-        return "Meus Animes \n ID: "+id + "IDAnime:"+ id_anime +" | IDUsuario"+id_usu + " | ULTIMO VISTO: " + ondeparei +"\n------------------\n";
+        return "\n ID: "+id + " | IDAnime:"+ id_anime +" | IDUsuario"+id_usu + "\n | ULTIMO VISTO: " + ondeparei +"\n------------------\n";
     }
     
 }

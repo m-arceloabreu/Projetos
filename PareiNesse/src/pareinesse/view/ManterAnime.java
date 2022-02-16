@@ -19,11 +19,13 @@ import pareinesse.model.bean.Anime;
 public class ManterAnime {
      public static void montarTela() throws SQLException, ClassNotFoundException  {
         int ops = Integer.parseInt(JOptionPane.showInputDialog("INSERIR = 1 \nLISTAR = 2 \nBUSCAR = 3 \nALTERAR = 4 \nEXCLUIR = 5"));
-        if(ops == 1 ) inserir();
-        if(ops == 2 ) listar();
-        if(ops == 3 ) buscar();
-        if(ops == 4 ) alterar();
-        if(ops == 5 ) excluir();
+       switch(ops){
+            case 1:  inserir(); break;
+            case 2:  listar(); break;
+            case 3:  buscar(); break;
+            case 4:  alterar(); break;
+            case 5:  excluir(); ;break;
+            }
     }
      
      public static void inserir() throws SQLException, ClassNotFoundException {

@@ -19,11 +19,13 @@ public class ManterUsuario {
     
     public static void montarTela() throws SQLException, ClassNotFoundException {
     int ops = Integer.parseInt(JOptionPane.showInputDialog("1-Inserir \n2-Listar\n3-Buscar\n4-Alterar\n5Excluir"));
-    if(ops ==1) inserir();
-    if(ops ==2) listar();
-    if(ops ==3) buscar();
-    if(ops ==4) alterar(); 
-    if(ops ==5) excluir();
+   switch(ops){
+            case 1:  inserir(); break;
+            case 2:  listar(); break;
+            case 3:  buscar(); break;
+            case 4:  alterar(); break;
+            case 5:  excluir(); ;break;
+            }
         }
     
     public static boolean validaUsuario()throws SQLException,ClassNotFoundException{

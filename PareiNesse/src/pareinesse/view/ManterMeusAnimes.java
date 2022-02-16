@@ -8,6 +8,7 @@ package pareinesse.view;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
+import pareinesse.PareiNesse;
 import pareinesse.controller.ControleMeusAnimes;
 import pareinesse.model.bean.MeusAnimes;
 
@@ -19,13 +20,17 @@ import pareinesse.model.bean.MeusAnimes;
  */
 public class ManterMeusAnimes {
     public static void montarTela() throws SQLException, ClassNotFoundException  {
-        int ops = Integer.parseInt(JOptionPane.showInputDialog("INSERIR = 1, \nLISTAR = 2,\nBUSCAR = 3,\nALTERAR = 4,\nEXCLUIR = 5"));
-        if(ops == 1 ) inserir();
-        if(ops == 2 ) listar();
-        if(ops == 3 ) buscar();
-        if(ops == 4 ) alterar();
-        if(ops == 5 ) excluir();
-    }
+        int ops = Integer.parseInt(JOptionPane.showInputDialog("INSERIR = 1, \nLISTAR = 2,\nBUSCAR = 3,\nALTERAR = 4,\nEXCLUIR = 5\n  "));
+      
+        switch(ops){
+            case 1:  inserir(); break;
+            case 2:  listar(); break;
+            case 3:  buscar(); break;
+            case 4:  alterar(); break;
+            case 5:  excluir(); ;break;
+            }
+        }
+        
     public static void inserir() throws ClassNotFoundException, SQLException{
     JOptionPane.showMessageDialog(null,"INSERIR MEU ANIME");
     int id_anime = Integer.parseInt(JOptionPane.showInputDialog("ENTRE COM O ID ANIME"));

@@ -25,10 +25,15 @@ public class PareiNesse {
         
         if(retorno){
         int ops = Integer.parseInt(JOptionPane.showInputDialog("1-LISTA DE ANIMES\n2- ESTOU ASSISTINDO \n3-USUARIOS"));
-            if(ops == 1) pareinesse.view.ManterAnime.montarTela();
-            if(ops == 2) pareinesse.view.ManterMeusAnimes.montarTela();
-            if(ops == 3)pareinesse.view.ManterUsuario.montarTela();
-                }
+        int escolha = 1;
+        do{
+        switch(ops){
+            case 1: pareinesse.view.ManterAnime.montarTela();escolha = 1;break;
+            case 2: pareinesse.view.ManterMeusAnimes.montarTela();escolha = 1;break;
+            case 3: pareinesse.view.ManterUsuario.montarTela();escolha = 1;break;
+            }
+        }while(escolha == 1);
+        }
         else{
             JOptionPane.showMessageDialog(null,"Usuario Invalido");
         }
